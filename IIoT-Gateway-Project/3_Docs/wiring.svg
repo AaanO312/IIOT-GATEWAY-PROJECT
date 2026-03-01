@@ -1,0 +1,79 @@
+<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+  <!-- Styles -->
+  <style>
+    .esp-board { fill: #333; stroke: #000; rx: 10; }
+    .module-box { fill: #fff; stroke: #555; stroke-width: 2; rx: 5; }
+    .pin-text { font-family: monospace; font-size: 12px; fill: #fff; text-anchor: end; }
+    .mod-text { font-family: Arial; font-weight: bold; font-size: 14px; fill: #333; text-anchor: middle; }
+    .wire { fill: none; stroke-width: 3; opacity: 0.8; }
+    .wire-pwr { stroke: #ff5252; } /* 3.3V/5V Red */
+    .wire-gnd { stroke: #333; }    /* GND Black */
+    .wire-sig { stroke: #2196f3; } /* Signal Blue */
+    .wire-i2c { stroke: #ff9800; } /* I2C Orange */
+  </style>
+
+  <!-- ESP32 Board (Center) -->
+  <rect x="300" y="50" width="200" height="400" class="esp-board" />
+  <text x="400" y="80" font-family="Arial" font-size="20" fill="#fff" text-anchor="middle" font-weight="bold">ESP32 DevKit</text>
+
+  <!-- Pins Left Side -->
+  <text x="290" y="150" class="pin-text">3V3</text>
+  <text x="290" y="180" class="pin-text">GND</text>
+  <text x="290" y="240" class="pin-text">GPIO 34 (ADC)</text>
+  <text x="290" y="300" class="pin-text">GPIO 14</text>
+  <text x="290" y="360" class="pin-text">GPIO 27</text>
+
+  <!-- Pins Right Side -->
+  <text x="490" y="150" class="pin-text" text-anchor="start">VIN (5V)</text>
+  <text x="490" y="180" class="pin-text" text-anchor="start">GND</text>
+  <text x="490" y="240" class="pin-text" text-anchor="start">GPIO 21 (SDA)</text>
+  <text x="490" y="270" class="pin-text" text-anchor="start">GPIO 22 (SCL)</text>
+  <text x="490" y="330" class="pin-text" text-anchor="start">GPIO 26</text>
+
+  <!-- Modules -->
+  
+  <!-- 1. Potentiometer (Left Top) -->
+  <rect x="50" y="200" width="120" height="60" class="module-box" />
+  <text x="110" y="235" class="mod-text">Potentiometer</text>
+  <path d="M170 230 L 220 230 L 220 235 L 300 235" class="wire wire-sig" /> <!-- Signal -->
+  <path d="M170 215 L 200 215 L 200 145 L 300 145" class="wire wire-pwr" /> <!-- VCC -->
+  <path d="M170 245 L 200 245 L 200 175 L 300 175" class="wire wire-gnd" /> <!-- GND -->
+
+  <!-- 2. Button (Left Bottom) -->
+  <rect x="50" y="280" width="120" height="60" class="module-box" />
+  <text x="110" y="315" class="mod-text">Button</text>
+  <path d="M170 310 L 300 295" class="wire wire-sig" /> <!-- Signal -->
+  <path d="M170 325 L 200 325 L 200 175" class="wire wire-gnd" /> <!-- GND -->
+
+  <!-- 3. NeoPixel Ring (Left Way Bottom) -->
+  <rect x="50" y="360" width="120" height="60" class="module-box" />
+  <text x="110" y="395" class="mod-text">WS2812 Ring</text>
+  <path d="M170 390 L 300 355" class="wire wire-sig" /> <!-- DI -->
+  <path d="M170 375 L 190 375 L 190 145" class="wire wire-pwr" /> <!-- 5V/3V3 -->
+  <path d="M170 405 L 190 405 L 190 175" class="wire wire-gnd" /> <!-- GND -->
+
+  <!-- 4. OLED (Right Top) -->
+  <rect x="600" y="200" width="120" height="80" class="module-box" />
+  <text x="660" y="245" class="mod-text">OLED Display</text>
+  <text x="660" y="265" font-size="10" text-anchor="middle" fill="#666">I2C Address: 0x3C</text>
+  <path d="M600 235 L 500 235" class="wire wire-i2c" /> <!-- SDA -->
+  <path d="M600 255 L 520 255 L 520 265 L 500 265" class="wire wire-i2c" /> <!-- SCL -->
+  <path d="M600 215 L 540 215 L 540 145 L 500 145" class="wire wire-pwr" /> <!-- VCC -->
+  <path d="M600 275 L 540 275 L 540 175 L 500 175" class="wire wire-gnd" /> <!-- GND -->
+
+  <!-- 5. Relay (Right Bottom) -->
+  <rect x="600" y="320" width="120" height="60" class="module-box" />
+  <text x="660" y="355" class="mod-text">Relay Module</text>
+  <path d="M600 350 L 500 325" class="wire wire-sig" /> <!-- IN -->
+  <path d="M600 335 L 560 335 L 560 145" class="wire wire-pwr" /> <!-- VCC -->
+  <path d="M600 365 L 560 365 L 560 175" class="wire wire-gnd" /> <!-- GND -->
+
+  <!-- Legend -->
+  <rect x="620" y="420" width="150" height="70" fill="#f9f9f9" stroke="#ccc" />
+  <text x="630" y="435" font-size="12" font-weight="bold" fill="#333">Wire Colors:</text>
+  <rect x="630" y="445" width="20" height="2" fill="red" /> <text x="660" y="450" font-size="10">Power (3V3/5V)</text>
+  <rect x="630" y="455" width="20" height="2" fill="black" /> <text x="660" y="460" font-size="10">GND</text>
+  <rect x="630" y="465" width="20" height="2" fill="#2196f3" /> <text x="660" y="470" font-size="10">Signal (GPIO)</text>
+  <rect x="630" y="475" width="20" height="2" fill="#ff9800" /> <text x="660" y="480" font-size="10">I2C (SDA/SCL)</text>
+
+</svg>
