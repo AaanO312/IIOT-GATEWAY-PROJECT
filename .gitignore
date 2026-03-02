@@ -1,0 +1,26 @@
+# --- 全局忽略 ---
+.DS_Store
+.vscode/
+
+# --- 1_Firmware (PlatformIO) ---
+.pio/
+*.elf
+*.bin
+*.hex
+*.map
+1_Firmware/.gitignore  # 忽略子文件夹里的重复配置(可选)
+
+# --- 2_Backend (Python) ---
+__pycache__/
+*.py[cod]
+venv/
+.env
+
+# ！！！重要：忽略数据库文件！！！
+*.db
+*.sqlite3
+factory.db
+
+# --- 3_Docs ---
+~$*.xls*   # 忽略 Excel 打开时产生的临时文件
+*.tmp
