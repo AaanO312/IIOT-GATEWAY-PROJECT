@@ -39,7 +39,7 @@ DB_FILE = "factory.db"
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app, cors_allowed_origins='*', async_mode='eventlet')
-last_trigger_time = 0 # [新增] 上次处理消息的时间
+last_trigger_time = 0 #上次处理消息的时间
 last_ai_time = 0
 is_ai_running = False
 is_alerting = False
@@ -78,7 +78,7 @@ def save_to_db(count_inc, temp, status):
                   (count_inc, temp, status))
         conn.commit()
         conn.close()
-        print(f"✅ 数据已入库: +{count_inc}") # <--- 加这行
+        print(f"数据已入库: +{count_inc}") # <--- 加这行
     except Exception as e:
         print(f"DB Error: {e}")
 
@@ -138,7 +138,7 @@ HTML_TEMPLATE = """
             <div id="oee" class="value">100%</div>
         </div>
         
-        <!-- [新增] 温度卡片 -->
+        <!-- 温度卡片 -->
         <div class="card">
             <div class="label">Temperature</div>
             <div id="temp" class="value">25.0°C</div>
@@ -166,7 +166,7 @@ HTML_TEMPLATE = """
         
         // 记录上一次的状态
         var lastChartCount = -1; 
-        var lastStatus = ""; // [新增] 记录上一次状态
+        var lastStatus = ""; // 记录上一次状态
 
 
         var option = {
@@ -184,7 +184,7 @@ HTML_TEMPLATE = """
 
 
         socket.on('update_data', function(msg) {
-            // 1. 更新文字 (保持不变)
+            // 1. 更新文字 
             document.getElementById('count').innerText = msg.count;
             document.getElementById('oee').innerText = msg.oee.toFixed(1) + "%";
             document.getElementById('temp').innerText = msg.temperature + "°C";
@@ -211,7 +211,7 @@ HTML_TEMPLATE = """
             }
 
 
-            // 2. [核心修改] 图表更新条件：产量变了 OR 状态变了
+            // 2. 图表更新条件：产量变了 OR 状态变了
             // 这样长按报错时，图表也会平移记录
             if (msg.count != lastChartCount || msg.status != lastStatus) {
                 
@@ -280,7 +280,7 @@ def index():
     return render_template_string(HTML_TEMPLATE)
 
 
-# --- 新增：历史数据接口 ---
+# --- 历史数据接口 ---
 @app.route('/api/history')
 def get_history():
     conn = sqlite3.connect(DB_FILE)
@@ -348,7 +348,7 @@ def on_message(client, userdata, msg):
                 total = c.fetchone()[0]
                 if total: realtime_data['count'] = total
 
-        # 3. 【核心修复】AI 诊断触发逻辑（增加状态屏障）
+        # 3. AI 诊断触发逻辑（增加状态屏障）
         # 只有在 高温 或 故障 且 AI 没有正在运行时才触发
         if (temp > 80 or status == 'fault'):
             if not is_alerting and not is_ai_running:
