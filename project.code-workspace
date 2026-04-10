@@ -1,15 +1,15 @@
 {
 	"folders": [
 		{
-			"name": "🔧 Firmware (固件)",
+			"name": "Firmware (固件)",
 			"path": "1_Firmware"
 		},
 		{
-			"name": "🧠 Backend (后端)",
+			"name": "Backend (后端)",
 			"path": "2_Backend"
 		},
 		{
-			"name": "📄 Docs (文档)",
+			"name": "Docs (文档)",
 			"path": "3_Docs"
 		}
 	],
